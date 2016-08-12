@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: ARDX Open API Reference
 
 language_tabs:
   - shell
@@ -8,8 +8,8 @@ language_tabs:
   - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='http://ardx.net/connect/'>Contact ARDX</a>
+  
 
 includes:
   - errors
@@ -19,80 +19,80 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the ARDX open API. You can use this API to access ARDX project API endpoints, which can provide access information on various cats, kittens, and breeds in our database.
 
 We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+
 
 # Authentication
 
 > To authorize, use this code:
 
 ```ruby
-require 'kittn'
+require 'ardxopen'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+api = Ardxopen::APIClient.authorize!('ardxopenapikey')
 ```
 
 ```python
-import kittn
+import ardxopen
 
-api = kittn.authorize('meowmeowmeow')
+api = kittn.authorize('ardxopenapikey')
 ```
 
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+  -H "Authorization: ardxopenapikey"
 ```
 
 ```javascript
-const kittn = require('kittn');
+const ardxopen = require('ardxopen');
 
-let api = kittn.authorize('meowmeowmeow');
+let api = kittn.authorize('ardxopenapikey');
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure to replace `ardxopenapikey` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+ARDX uses API keys to allow access to the API. You can request a new API key from your project director or by [contacting us](http://ardx.net/connect/).
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+ARDX expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: meowmeowmeow`
+`Authorization: ardxopenapikey`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code> ardxopenapikey </code> with your personal API key.
 </aside>
 
-# Kittens
+# Results
 
-## Get All Kittens
+## Get All Results
 
 ```ruby
-require 'kittn'
+require 'ardxopen'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+api = Ardxopen::APIClient.authorize!('ardxopenapikey')
+api.reqults.get
 ```
 
 ```python
-import kittn
+import ardxopen
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+api = ardxopen.authorize('ardxopenapikey')
+api.results.get()
 ```
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+curl "https://ardxopen.net/api/results"
+  -H "Authorization: ardxopenapikey"
 ```
 
 ```javascript
-const kittn = require('kittn');
+const ardxopen = require('ardxopen');
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+let api = ardxopen.authorize('ardxopenapikey');
+let results = api.results.get();
 ```
 
 > The above command returns JSON structured like this:
@@ -101,64 +101,65 @@ let kittens = api.kittens.get();
 [
   {
     "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
+    "name": "survey-alpha",
+    "type": "inperson",
+    "cohortsize": "623",
+    "responserate": "72"
   },
   {
     "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+    "name": "survey-bravo",
+    "type": "email",
+    "cohortsize": "1512",
+    "responserate": "46"
   }
 ]
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves all result sets.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET https://ardxopen.net/api/results`
 
 ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+include_retired | false | If set to true, the result will also include inactive (retired) survey result sets.
+returnsize | 0 | If set to > 0, request will return first X results
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Success - survey result list retrieved
 </aside>
+<aside class="warning">Error message</aside>
 
-## Get a Specific Kitten
+## Get a Specific Result set
 
 ```ruby
-require 'kittn'
+require 'ardxopen'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
+api = Ardxopen::APIClient.authorize!('ardxopenapikey')
+api.results.get(2)
 ```
 
 ```python
-import kittn
+import ardxopen
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
+api = ardxopen.authorize('ardxopenapikey')
+api.results.get(2)
 ```
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+curl "https://ardxopen.net/api/results/2"
+  -H "Authorization: ardxopenapikey"
 ```
 
 ```javascript
-const kittn = require('kittn');
+const ardxopen = require('ardxopen');
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+let api = ardxopen.authorize('ardxopenapikey');
+let max = api.results.get(2);
 ```
 
 > The above command returns JSON structured like this:
@@ -166,24 +167,97 @@ let max = api.kittens.get(2);
 ```json
 {
   "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "name": "survey-bravo",
+  "type": "email",
+  "cohortsize": "1512",
+  "responserate": "46"
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This endpoint retrieves a specific result set.
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET https://ardxopen.net/api/results/<ID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
+ID | The ID of the result set to retrieve
 
+<aside class="success">
+Success - survey result list retrieved
+</aside>
+<aside class="warning">Result set not found</aside>
+
+
+# ResultItem
+
+## Get All Result Items for a Survey Result
+
+```ruby
+require 'ardxopen'
+
+api = Ardxopen::APIClient.authorize!('ardxopenapikey')
+api.resultitemss.get(2)
+```
+
+```python
+import ardxopen
+
+api = ardxopen.authorize('ardxopenapikey')
+api.resultitemss.get(2)
+```
+
+```shell
+curl "https://ardxopen.net/api/resultitemss/2"
+  -H "Authorization: ardxopenapikey"
+```
+
+```javascript
+const ardxopen = require('ardxopen');
+
+let api = ardxopen.authorize('ardxopenapikey');
+let max = api.resultitemss.get(2);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+{
+    "id": 123456,
+    "name": "survey-alpha",
+    "response": "true",
+    "question1": "yes",
+    "question2": "2"
+  },
+  {
+    "id": 234567,
+    "name": "survey-bravo",
+    "response": "false",
+    "question1": "no",
+    "question2": "1"
+  }
+  ]
+```
+
+This endpoint retrieves a specific result item.
+
+
+### HTTP Request
+
+`GET https://ardxopen.net/api/resultitemss/<ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the result set to retrieve items for
+
+<aside class="success">
+Success - survey result item list retrieved
+</aside>
+<aside class="warning">Result set not found</aside>
